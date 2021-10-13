@@ -1,5 +1,7 @@
 ﻿#include <iostream>
 
+const double SM_IN_INCH = 2.54;
+
 /**
  * \brief переводит сантиметры в дюймы
  * \param cm_length длина в сантиметрах
@@ -26,5 +28,5 @@ int main()
 
 double convertToInches(const double cm_length)
 {
-    return cm_length / 2.5;
+    return cm_length / SM_IN_INCH;
 }
