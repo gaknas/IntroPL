@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+const double G = 6.67 * pow(10, -11);
 
 /**
 \brief Рассчитывает расстояние между телами массы mass сила взаимодействия между которыми равна force
@@ -7,7 +8,7 @@
 \param G гравитационная постоянная
 \return расстояние между телами
 */
-double getDistance(double mass, double force, double G = 6.67 * pow(10, -11));
+double getDistance(double mass, double force);
 
 /**
 \brief Точка входа в программу
@@ -29,7 +30,7 @@ int main()
     return 0;
 }
 
-double getDistance(const double mass, const double force, const double G)
+double getDistance(const double mass, const double force)
 {
     return mass * sqrt(G / force);
 }
