@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-const double G = 6.67 * pow(10, -11);
+const double GRAVITY_CONSTANT = 6.67 * pow(10, -11);
 
 /**
 \brief Рассчитывает расстояние между телами массы mass сила взаимодействия между которыми равна force
@@ -32,5 +32,5 @@ int main()
 
 double getDistance(const double mass, const double force)
 {
-    return mass * sqrt(G / force);
+    return mass * sqrt(GRAVITY_CONSTANT / force);
 }
