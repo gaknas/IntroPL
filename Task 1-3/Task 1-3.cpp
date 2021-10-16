@@ -23,7 +23,6 @@ int main()
     std::cout << "Insert force value = ";
     double force;
     std::cin >> force;
-    force *= pow(10, -5);
 
     const double distance = getDistance(mass, force);
     std::cout << "Distance between bodies = " << distance;
@@ -32,5 +31,5 @@ int main()
 
 double getDistance(const double mass, const double force)
 {
-    return mass * sqrt(GRAVITY_CONSTANT / force);
+    return mass * sqrt(GRAVITY_CONSTANT / (force * pow(10, -5)));
 }
