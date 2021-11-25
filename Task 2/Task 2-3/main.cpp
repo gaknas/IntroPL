@@ -91,26 +91,20 @@ double getMaximum(double a, double b, double c)
 
 int ascendingSort(double &a, double &b, double &c)
 {
-    try {
-        if (c < 0) {
-            if (a > b) {
-                double auxiliary = a;
-                a = b;
-                b = auxiliary;
-            }
+    if (c < 0) {
+        if (a > b) {
+            double auxiliary = a;
+            a = b;
+            b = auxiliary;
         }
-        else {
-            const double summ = a + b + c;
-            a = getMinimum(a, b, c);
-            c = getMaximum(a, b, c);
-            b = summ - a - c;
-        }
-        return 0;
     }
-    catch(...) 
-    {
-        return 1;
-    } 
+    else {
+        const double summ = a + b + c;
+        a = getMinimum(a, b, c);
+        c = getMaximum(a, b, c);
+        b = summ - a - c;
+    }
+    return 0;
 }
 
 int read_number(const std::string& message)
