@@ -8,13 +8,21 @@
 int read_number(const std::string& message);
 
 /**
- * \brief Функция сортировки по возрастанию двух/трех чисел.
+ * \brief Функция сортировки по возрастанию трех чисел.
  * \param a первое число.
  * \param b второе число.
- * \param c третье число(если c < 0 в сортировке оно не учавствует).
+ * \param c третье число.
  * \return 0 в случае успеха.
  */
-int ascendingSort(double& a, double& b, double& c);
+int ascendingSortThree(double &a, double &b, double &c);
+
+/**
+ * \brief Функция сортировки по возрастанию двух чисел.
+ * \param a первое число.
+ * \param b второе число.
+ * \return 0 в случае успеха.
+ */
+int ascendingSortTwo(double &a, double &b);
 
 /**
  * \brief Функция нахождения минимального из трех чисел.
@@ -55,16 +63,15 @@ int main()
         std::cout << "Синус числа равен " << sine << "\n";
         double cosine = cos(NUMBER);
         std::cout << "Косинус числа равен " << cosine << "\n";
-        double logarithm = -1;
         if (isCalculated(NUMBER)) {
-            logarithm = log(NUMBER);
+            const double logarithm = log(NUMBER);
             std::cout << "Логарифм числа равен " << logarithm << "\n";
-            ascendingSort(sine, cosine, logarithm);
+            ascendingSortThree(sine, cosine, logarithm);
             std::cout << sine << " " << cosine << " " << logarithm << std::endl;
         }
         else {
             std::cout << "Логарифм не вычисляется" << "\n";
-            ascendingSort(sine, cosine, logarithm);
+            ascendingSortTwo(sine, cosine);
             std::cout << sine << " " << cosine << std::endl;
         }
         return 0;
@@ -89,20 +96,22 @@ double getMaximum(double a, double b, double c)
     return a;
 }
 
-int ascendingSort(double &a, double &b, double &c)
+int ascendingSortThree(double &a, double &b, double &c)
 {
-    if (c < 0) {
-        if (a > b) {
-            double auxiliary = a;
-            a = b;
-            b = auxiliary;
-        }
-    }
-    else {
-        const double summ = a + b + c;
-        a = getMinimum(a, b, c);
-        c = getMaximum(a, b, c);
-        b = summ - a - c;
+    
+    const double summ = a + b + c;
+    a = getMinimum(a, b, c);
+    c = getMaximum(a, b, c);
+    b = summ - a - c;
+    return 0;
+}
+
+int ascendingSortTwo(double &a, double &b)
+{
+    if (a > b) {
+        double auxiliary = a;
+        a = b;
+        b = auxiliary;
     }
     return 0;
 }
