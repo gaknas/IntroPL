@@ -23,8 +23,20 @@ int main() noexcept
 {
     try
     {
+        setlocale(LC_ALL, "Russian");
         const auto size = get_sequence_size("Введите количество членов последовательности ");
-
+        double current = 0;
+        double summ = 0;
+        for (int i = 0; i < size; i++) {
+            if (i == 0) {
+                current = 1;
+            }
+            else {
+                current *= get_recurrent_member(i - 1);
+            }
+            summ += current;
+        }
+        std::cout << "Сумма последовательности из " << size << " членов равна: " << summ << std::endl;
         return 0;
     }
     catch (const std::exception& e)
@@ -39,9 +51,9 @@ size_t get_sequence_size(const std::string& message)
     std::cout << message;
     int size = 0;
     std::cin >> size;
-    if (size < 0)
+    if (size < 1)
     {
-        throw std::invalid_argument("Значение должно быть больше либо равно 0!");
+        throw std::invalid_argument("Значение должно быть больше 0!");
     }
 
     return size;
@@ -49,5 +61,5 @@ size_t get_sequence_size(const std::string& message)
 
 double get_recurrent_member(const size_t index) noexcept
 {
-    return 42;
+    return -1.0 / (4 * pow(index, 2) + 6 * index + 2);
 }
