@@ -39,20 +39,27 @@ double get_value(const std::string& message);
  */
 int main()
 {
-    setlocale(LC_ALL, "Russian");
-    const double START = 0.1;
-    double x = START;
-    const double END = 1;
-    const double STEP = get_value("введите шаг h ");;
-    const double EPS = get_value("введите точность для вычисления функционального ряда e ");
-    while (x <= END + (std::numeric_limits<double>::epsilon()))
-    {
-        const double Y = get_function_value(x);
-        const double S = get_row_summ(x, EPS);
-        std::cout << "x = " << std::setprecision(10) << x << " y = " << Y << " S = " << S << '\n';
-        x += STEP;
+    try {
+        setlocale(LC_ALL, "Russian");
+        const double START = 0.1;
+        double x = START;
+        const double END = 1;
+        const double STEP = get_value("введите шаг h ");;
+        const double EPS = get_value("введите точность для вычисления функционального ряда e ");
+        while (x <= END + (std::numeric_limits<double>::epsilon()))
+        {
+            const double Y = get_function_value(x);
+            const double S = get_row_summ(x, EPS);
+            std::cout << "x = " << std::setprecision(10) << x << " y = " << Y << " S = " << S << '\n';
+            x += STEP;
+        }
+        return 0;
     }
-    return 0;
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    } 
 }
 
 double get_value(const std::string& message)
