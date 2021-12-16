@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <sstream>
 #include <cstdlib>
 #include <ctime>
@@ -6,71 +6,71 @@
 using namespace std;
 
 /**
- * \brief Перечислимый тип способов задания массива.
+ * \brief РџРµСЂРµС‡РёСЃР»РёРјС‹Р№ С‚РёРї СЃРїРѕСЃРѕР±РѕРІ Р·Р°РґР°РЅРёСЏ РјР°СЃСЃРёРІР°.
  */
 enum class InputType
 {
     /**
-     * \brief ввод вручную.
+     * \brief РІРІРѕРґ РІСЂСѓС‡РЅСѓСЋ.
      */
     MANUALLY,
 
     /**
-     * \brief создание с использованием генератора случайных чисел.
+     * \brief СЃРѕР·РґР°РЅРёРµ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РіРµРЅРµСЂР°С‚РѕСЂР° СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР».
      */
      RANDOMLY
 };
 
 /**
- * \brief Метод заполнения массива
- * \param size Размер массива
- * \param input_type Способ создания массива
- * \param LOWER_BOUND Нижняя граница для случайных чисел
- * \param UPPER_BOUND Верхняя граница для случайных чисел
- * \return Заполненный массив
+ * \brief РњРµС‚РѕРґ Р·Р°РїРѕР»РЅРµРЅРёСЏ РјР°СЃСЃРёРІР°
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+ * \param input_type РЎРїРѕСЃРѕР± СЃРѕР·РґР°РЅРёСЏ РјР°СЃСЃРёРІР°
+ * \param LOWER_BOUND РќРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° РґР»СЏ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
+ * \param UPPER_BOUND Р’РµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р° РґР»СЏ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
+ * \return Р—Р°РїРѕР»РЅРµРЅРЅС‹Р№ РјР°СЃСЃРёРІ
  */
 int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, const int UPPER_BOUND);
 
 /**
- * \brief Вывод в строку элементов массива
- * \param size Размер массива
- * \return Строка с элементами
+ * \brief Р’С‹РІРѕРґ РІ СЃС‚СЂРѕРєСѓ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+ * \return РЎС‚СЂРѕРєР° СЃ СЌР»РµРјРµРЅС‚Р°РјРё
  */
 string to_string(const int*, const size_t size);
 
 /**
- * \brief Находит произведение четных элементов, значение которых по модулю меньше 5
- * \param size Размер массива
- * \return Произведение элементов
+ * \brief РќР°С…РѕРґРёС‚ РїСЂРѕРёР·РІРµРґРµРЅРёРµ С‡РµС‚РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ, Р·РЅР°С‡РµРЅРёРµ РєРѕС‚РѕСЂС‹С… РїРѕ РјРѕРґСѓР»СЋ РјРµРЅСЊС€Рµ 5
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+ * \return РџСЂРѕРёР·РІРµРґРµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ
  */
 int get_even_composition(int*, const size_t size);
 
 /**
- * \brief Находит количество нечетных элементов по модулю превышающих заданное число (\a A)
- * \param size Размер массива
- * \param A Число A
- * \return Количество элементов
+ * \brief РќР°С…РѕРґРёС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РЅРµС‡РµС‚РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РїРѕ РјРѕРґСѓР»СЋ РїСЂРµРІС‹С€Р°СЋС‰РёС… Р·Р°РґР°РЅРЅРѕРµ С‡РёСЃР»Рѕ (\a A)
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+ * \param A Р§РёСЃР»Рѕ A
+ * \return РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
  */
 int get_odd_quantity(int*, const size_t size, const int A);
 
 /**
- * \brief Умножает все нечетные элементы массива кратные 3 на их номер
- * \param size Размер массива
- * \return Количество элементов
+ * \brief РЈРјРЅРѕР¶Р°РµС‚ РІСЃРµ РЅРµС‡РµС‚РЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РјР°СЃСЃРёРІР° РєСЂР°С‚РЅС‹Рµ 3 РЅР° РёС… РЅРѕРјРµСЂ
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+ * \return РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
  */
 void multiply_elements(int*, const size_t size);
 
 /**
- * \brief Возвращает псевдослучайное число из диапазона (min, max)
- * \param min Минимальное число
- * \param max Максимальное число
- * \return случайное число
+ * \brief Р’РѕР·РІСЂР°С‰Р°РµС‚ РїСЃРµРІРґРѕСЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ РёР· РґРёР°РїР°Р·РѕРЅР° (min, max)
+ * \param min РњРёРЅРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ
+ * \param max РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ
+ * \return СЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ
  */
 int Random(int min, int max);
 
 /**
- * \brief Точка входа в программу
- * \return 0 в случае успеха
+ * \brief РўРѕС‡РєР° РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ
+ * \return 0 РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°
  */
 int main()
 {
@@ -82,21 +82,21 @@ int main()
     const int UPPER_BOUND = 21;
     try
     {
-        cout << "Введите размер массива = ";
+        cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР° = ";
         size_t size;
         cin >> size;
-        cout << "Выберите способ создания массива: " << static_cast<int>(InputType::MANUALLY) << " - вручную, " << static_cast<int>(InputType::RANDOMLY) << " - заполнить случайными числами ";
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ СЃРїРѕСЃРѕР± СЃРѕР·РґР°РЅРёСЏ РјР°СЃСЃРёРІР°: " << static_cast<int>(InputType::MANUALLY) << " - РІСЂСѓС‡РЅСѓСЋ, " << static_cast<int>(InputType::RANDOMLY) << " - Р·Р°РїРѕР»РЅРёС‚СЊ СЃР»СѓС‡Р°Р№РЅС‹РјРё С‡РёСЃР»Р°РјРё ";
         int input_type;
         cin >> input_type;
         my_array = get_array(size, input_type, LOWER_BOUND, UPPER_BOUND);
-        cout << "Полученный массив:\n";
+        cout << "РџРѕР»СѓС‡РµРЅРЅС‹Р№ РјР°СЃСЃРёРІ:\n";
         cout << to_string(my_array, size);
-        cout << "\nПроизведение четных элементов, значение которых по модулю меньше 5 = " << get_even_composition(my_array, size) << '\n';
-        cout << "Введите число A = ";
+        cout << "\nРџСЂРѕРёР·РІРµРґРµРЅРёРµ С‡РµС‚РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ, Р·РЅР°С‡РµРЅРёРµ РєРѕС‚РѕСЂС‹С… РїРѕ РјРѕРґСѓР»СЋ РјРµРЅСЊС€Рµ 5 = " << get_even_composition(my_array, size) << '\n';
+        cout << "Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ A = ";
         int A;
         cin >> A;
-        cout << "Количество нечетных элементов по модулю превышающих заданное число (A) = " << get_odd_quantity(my_array, size, A) << '\n';
-        cout << "Массив после умножаения всех нечетных элементов массива кратных 3 на их номер:\n";
+        cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РЅРµС‡РµС‚РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РїРѕ РјРѕРґСѓР»СЋ РїСЂРµРІС‹С€Р°СЋС‰РёС… Р·Р°РґР°РЅРЅРѕРµ С‡РёСЃР»Рѕ (A) = " << get_odd_quantity(my_array, size, A) << '\n';
+        cout << "РњР°СЃСЃРёРІ РїРѕСЃР»Рµ СѓРјРЅРѕР¶Р°РµРЅРёСЏ РІСЃРµС… РЅРµС‡РµС‚РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° РєСЂР°С‚РЅС‹С… 3 РЅР° РёС… РЅРѕРјРµСЂ:\n";
         multiply_elements(my_array, size);
         cout << to_string(my_array, size);
     }
@@ -117,7 +117,7 @@ int main()
 int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, const int UPPER_BOUND)
 {
     if (size == 0)
-        throw out_of_range("Неправильный размер массива");
+        throw out_of_range("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°");
 
     const auto array = new int[size];
     for (size_t index = 0; index < size; index++)
@@ -126,7 +126,7 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
         {
         case static_cast<int>(InputType::MANUALLY):
         {
-            cout << "Введите " << index + 1 << " элемент массива = ";
+            cout << "Р’РІРµРґРёС‚Рµ " << index + 1 << " СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° = ";
             cin >> array[index];
             break;
         }
@@ -136,7 +136,7 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
             break;
         }
         default:
-            cout << "Ошибка!";
+            cout << "РћС€РёР±РєР°!";
         }
     }
 
@@ -146,7 +146,7 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
 string to_string(const int* array, const size_t size)
 {
     if (array == nullptr)
-        throw invalid_argument("Массив не существует");
+        throw invalid_argument("РњР°СЃСЃРёРІ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
     stringstream buffer;
     buffer << "{";
