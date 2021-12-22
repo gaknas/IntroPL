@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include <sstream>
-#include <cstdlib>
-#include <ctime>
+#include <random>
 
 using namespace std;
 
@@ -32,6 +31,13 @@ enum class InputType
 int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, const int UPPER_BOUND);
 
 /**
+ * \brief Функция для получения размера массива
+ * \param message Мотивоционное сообщение для пользователя
+ * \return Размер массива
+ */
+size_t get_size(const std::string& message);
+
+/**
  * \brief Вывод в строку элементов массива
  * \param size Размер массива
  * \return Строка с элементами
@@ -60,13 +66,6 @@ int get_odd_quantity(int*, const size_t size, const int A);
  */
 void multiply_elements(int*, const size_t size);
 
-/**
- * \brief Возвращает псевдослучайное число из диапазона (min, max)
- * \param min Минимальное число
- * \param max Максимальное число
- * \return случайное число
- */
-int Random(int min, int max);
 
 /**
  * \brief Точка входа в программу
@@ -75,16 +74,13 @@ int Random(int min, int max);
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    srand(static_cast<unsigned int>(time(0)));
     auto error_code = 0;
     int* my_array = nullptr;
     const int LOWER_BOUND = -11;
     const int UPPER_BOUND = 21;
     try
     {
-        cout << "Введите размер массива = ";
-        size_t size;
-        cin >> size;
+        const auto size = get_size("Введите размер массива = ");
         cout << "Выберите способ создания массива: " << static_cast<int>(InputType::MANUALLY) << " - вручную, " << static_cast<int>(InputType::RANDOMLY) << " - заполнить случайными числами ";
         int input_type;
         cin >> input_type;
@@ -114,12 +110,32 @@ int main()
     return error_code;
 }
 
+size_t get_size(const std::string& message)
+{
+    int size = -1;
+    std::cout << message;
+    std::cin >> size;
+
+    if (size < 0)
+    {
+        throw std::out_of_range("Incorrect size. Value has to be greater or equal zero.");
+    }
+
+    return size;
+}
+
 int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, const int UPPER_BOUND)
 {
     if (size == 0)
         throw out_of_range("Неправильный размер массива");
 
     const auto array = new int[size];
+    //Will be used to obtain a seed for the random number engine
+    std::random_device rd;
+
+    //Standard mersenne_twister_engine seeded with rd()
+    std::mt19937 gen(rd());
+    const std::uniform_int_distribution<> uniformIntDistribution(LOWER_BOUND, UPPER_BOUND);
     for (size_t index = 0; index < size; index++)
     {
         switch (input_type)
@@ -132,7 +148,7 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
         }
         case static_cast<int>(InputType::RANDOMLY):
         {
-            array[index] = Random(LOWER_BOUND, UPPER_BOUND);
+            array[index] = uniformIntDistribution(gen);
             break;
         }
         default:
@@ -183,8 +199,4 @@ void multiply_elements(int* array, const size_t size) {
         if (array[i] % 3 == 0)
             array[i] *= i;
     }
-}
-
-int Random(int min, int max) {
-    return min + rand() % (max - min);
 }
