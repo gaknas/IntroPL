@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 
-const double SM_IN_INCH = 2.54;
+const double SM_IN_INCH = 2.5;
 
 /**
  * \brief переводит сантиметры в дюймы
