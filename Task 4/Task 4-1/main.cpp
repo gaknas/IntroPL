@@ -180,8 +180,6 @@ int get_even_composition(int* array, const size_t size) {
         if ((abs(array[i]) < 5) && (array[i] % 2 == 0))
             comp *= array[i];
     }
-    if (comp == 1)
-        comp = 0;
     return comp;
 }
 
