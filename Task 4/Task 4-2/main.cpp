@@ -5,75 +5,75 @@
 using namespace std;
 
 /**
- * \brief Перечислимый тип способов задания массива.
+ * \brief РџРµСЂРµС‡РёСЃР»РёРјС‹Р№ С‚РёРї СЃРїРѕСЃРѕР±РѕРІ Р·Р°РґР°РЅРёСЏ РјР°СЃСЃРёРІР°.
  */
 enum class InputType
 {
     /**
-     * \brief ввод вручную.
+     * \brief РІРІРѕРґ РІСЂСѓС‡РЅСѓСЋ.
      */
     MANUALLY,
 
     /**
-     * \brief создание с использованием генератора случайных чисел.
+     * \brief СЃРѕР·РґР°РЅРёРµ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РіРµРЅРµСЂР°С‚РѕСЂР° СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР».
      */
      RANDOMLY
 };
 
 /**
- * \brief Метод заполнения массива
- * \param size Размер массива
- * \param input_type Способ создания массива
- * \param LOWER_BOUND Нижняя граница для случайных чисел
- * \param UPPER_BOUND Верхняя граница для случайных чисел
- * \return Заполненный массив
+ * \brief РњРµС‚РѕРґ Р·Р°РїРѕР»РЅРµРЅРёСЏ РјР°СЃСЃРёРІР°
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+ * \param input_type РЎРїРѕСЃРѕР± СЃРѕР·РґР°РЅРёСЏ РјР°СЃСЃРёРІР°
+ * \param LOWER_BOUND РќРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° РґР»СЏ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
+ * \param UPPER_BOUND Р’РµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р° РґР»СЏ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
+ * \return Р—Р°РїРѕР»РЅРµРЅРЅС‹Р№ РјР°СЃСЃРёРІ
  */
 int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, const int UPPER_BOUND);
 
 /**
- * \brief Функция для получения размера массива
- * \param message Мотивоционное сообщение для пользователя
- * \return Размер массива
+ * \brief Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР°
+ * \param message РњРѕС‚РёРІРѕС†РёРѕРЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+ * \return Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
  */
 size_t get_size(const std::string& message);
 
 /**
- * \brief Вывод в строку элементов массива
- * \param size Размер массива
- * \return Строка с элементами
+ * \brief Р’С‹РІРѕРґ РІ СЃС‚СЂРѕРєСѓ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+ * \return РЎС‚СЂРѕРєР° СЃ СЌР»РµРјРµРЅС‚Р°РјРё
  */
 string to_string(const int*, const size_t size);
 
 /**
- * \brief Заменяет последний отрицательный элемент массива на модуль первого
- * \param size Размер массива
+ * \brief Р—Р°РјРµРЅСЏРµС‚ РїРѕСЃР»РµРґРЅРёР№ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° РЅР° РјРѕРґСѓР»СЊ РїРµСЂРІРѕРіРѕ
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
  */
 void replace_last_negative(int*, const size_t size);
 
 /**
- * \brief Удаляет из массива все числа в котором первая и последняя цифры одинаковые
- * \param size Размер массива
+ * \brief РЈРґР°Р»СЏРµС‚ РёР· РјР°СЃСЃРёРІР° РІСЃРµ С‡РёСЃР»Р° РІ РєРѕС‚РѕСЂРѕРј РїРµСЂРІР°СЏ Рё РїРѕСЃР»РµРґРЅСЏСЏ С†РёС„СЂС‹ РѕРґРёРЅР°РєРѕРІС‹Рµ
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
  */
 void delete_palindromes(int*&, size_t &size);
 
 /**
- * \brief Удаляет из массива элемент под номером (\a index)
- * \param size Размер массива
- * \param index номер элемента который надо удалить
+ * \brief РЈРґР°Р»СЏРµС‚ РёР· РјР°СЃСЃРёРІР° СЌР»РµРјРµРЅС‚ РїРѕРґ РЅРѕРјРµСЂРѕРј (\a index)
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+ * \param index РЅРѕРјРµСЂ СЌР»РµРјРµРЅС‚Р° РєРѕС‚РѕСЂС‹Р№ РЅР°РґРѕ СѓРґР°Р»РёС‚СЊ
  */
 void delete_element(int*&, size_t &size, const size_t index);
 
 /**
- * \brief Создает из исходного массива новый массив P по определенному правилу
- * \param size Размер массива
- * \return массив P
+ * \brief РЎРѕР·РґР°РµС‚ РёР· РёСЃС…РѕРґРЅРѕРіРѕ РјР°СЃСЃРёРІР° РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ P РїРѕ РѕРїСЂРµРґРµР»РµРЅРЅРѕРјСѓ РїСЂР°РІРёР»Сѓ
+ * \param size Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+ * \return РјР°СЃСЃРёРІ P
  */
-int* сreate_m(int*, const size_t size);
+int* СЃreate_m(int*, const size_t size);
 
 
 /**
- * \brief Точка входа в программу
- * \return 0 в случае успеха
+ * \brief РўРѕС‡РєР° РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ
+ * \return 0 РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°
  */
 int main()
 {
@@ -84,19 +84,19 @@ int main()
     const int UPPER_BOUND = 20;
     try
     {
-        auto size = get_size("Введите размер массива = ");
-        cout << "Выберите способ создания массива: " << static_cast<int>(InputType::MANUALLY) << " - вручную, " << static_cast<int>(InputType::RANDOMLY) << " - заполнить случайными числами ";
+        auto size = get_size("Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР° = ");
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ СЃРїРѕСЃРѕР± СЃРѕР·РґР°РЅРёСЏ РјР°СЃСЃРёРІР°: " << static_cast<int>(InputType::MANUALLY) << " - РІСЂСѓС‡РЅСѓСЋ, " << static_cast<int>(InputType::RANDOMLY) << " - Р·Р°РїРѕР»РЅРёС‚СЊ СЃР»СѓС‡Р°Р№РЅС‹РјРё С‡РёСЃР»Р°РјРё ";
         int input_type;
         cin >> input_type;
         my_array = get_array(size, input_type, LOWER_BOUND, UPPER_BOUND);
-        cout << "Полученный массив:\n";
+        cout << "РџРѕР»СѓС‡РµРЅРЅС‹Р№ РјР°СЃСЃРёРІ:\n";
         cout << to_string(my_array, size);
         replace_last_negative(my_array, size);
         delete_palindromes(my_array, size);
-        cout << "\nМассив после удаления всех элементов с одинаковой начальной и конечной цифрой:\n";
+        cout << "\nРњР°СЃСЃРёРІ РїРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ СЃ РѕРґРёРЅР°РєРѕРІРѕР№ РЅР°С‡Р°Р»СЊРЅРѕР№ Рё РєРѕРЅРµС‡РЅРѕР№ С†РёС„СЂРѕР№:\n";
         cout << to_string(my_array, size);
-        cout << "\nМассив M:\n";
-        cout << to_string(сreate_m(my_array, size), size);
+        cout << "\nРњР°СЃСЃРёРІ M:\n";
+        cout << to_string(СЃreate_m(my_array, size), size);
     }
     catch (exception& e)
     {
@@ -129,7 +129,7 @@ size_t get_size(const std::string& message)
 int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, const int UPPER_BOUND)
 {
     if (size == 0)
-        throw out_of_range("Неправильный размер массива");
+        throw out_of_range("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°");
 
     const auto array = new int[size];
     //Will be used to obtain a seed for the random number engine
@@ -144,7 +144,7 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
         {
         case static_cast<int>(InputType::MANUALLY):
         {
-            cout << "Введите " << index + 1 << " элемент массива = ";
+            cout << "Р’РІРµРґРёС‚Рµ " << index + 1 << " СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° = ";
             cin >> array[index];
             break;
         }
@@ -154,7 +154,7 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
             break;
         }
         default:
-            cout << "Ошибка!";
+            cout << "РћС€РёР±РєР°!";
         }
     }
 
@@ -164,7 +164,7 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
 string to_string(const int* array, const size_t size)
 {
     if (array == nullptr)
-        throw invalid_argument("Массив не существует");
+        throw invalid_argument("РњР°СЃСЃРёРІ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
     stringstream buffer;
     buffer << "{";
@@ -184,11 +184,11 @@ void replace_last_negative(int* array, const size_t size) {
         }
     }
     if (index == -1) {
-        cout << "\nВ массиве нет отрицательных чисел";
+        cout << "\nР’ РјР°СЃСЃРёРІРµ РЅРµС‚ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹С… С‡РёСЃРµР»";
     }
     else {
         array[index] = abs(array[0]);
-        cout << "\nМассив после замены последнего отрицательного элемента на модуль первого:\n";
+        cout << "\nРњР°СЃСЃРёРІ РїРѕСЃР»Рµ Р·Р°РјРµРЅС‹ РїРѕСЃР»РµРґРЅРµРіРѕ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РЅР° РјРѕРґСѓР»СЊ РїРµСЂРІРѕРіРѕ:\n";
         cout << to_string(array, size);
     }
 }
@@ -227,7 +227,7 @@ void delete_element(int *&array, size_t &size, const size_t index) {
     size = size - 1;
 }
 
-int* сreate_m(int* P, const size_t size) {
+int* СЃreate_m(int* P, const size_t size) {
     int* M = new int[size];
     for (size_t i = 0; i < size; i++) {
         if (P[i] % 2 == 0) {
