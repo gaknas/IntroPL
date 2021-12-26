@@ -174,18 +174,22 @@ string to_string(int** matrix, const size_t cols, const size_t rows)
         throw invalid_argument("Массив не существует");
 
     stringstream buffer;
-    for (size_t col = 0; col < cols; col++) {
-        if (col == 0)
-            buffer << "{{";
-        else
-            buffer << " {";
-        for (size_t row = 0; row < rows - 1; row++) {
-            buffer << std::setw(4) << std::right << matrix[col][row] << ",";
+    if (cols == 0)
+        buffer << "{}";
+    else {
+        for (size_t col = 0; col < cols; col++) {
+            if (col == 0)
+                buffer << "{{";
+            else
+                buffer << " {";
+            for (size_t row = 0; row < rows - 1; row++) {
+                buffer << std::setw(4) << std::right << matrix[col][row] << ",";
+            }
+            if (col == cols - 1)
+                buffer << std::setw(4) << std::right << matrix[col][rows - 1] << "}}\n";
+            else
+                buffer << std::setw(4) << std::right << matrix[col][rows - 1] << "}\n";
         }
-        if (col == cols - 1) 
-            buffer << std::setw(4) << std::right << matrix[col][rows - 1] << "}}\n";
-        else 
-            buffer << std::setw(4) << std::right << matrix[col][rows - 1] << "}\n";
     }
     return buffer.str();
 }
