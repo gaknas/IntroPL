@@ -109,8 +109,10 @@ int main()
 int ascendingSort(double &a, double &b, double &c)
 {
     const double summ = a + b + c;
-    a = getMinimum(a, b, c);
-    c = getMaximum(a, b, c);
+    const double min = getMinimum(a, b, c);
+    const double max = getMaximum(a, b, c);
+    a = min;
+    c = max;
     b = summ - a - c;
     return 0;
 }
@@ -119,8 +121,10 @@ int ascendingSort(double &a, double &b, double &c)
 int descendingSort(double &a, double &b, double &c)
 {
     const double summ = a + b + c;
-    c = getMinimum(a, b, c);
-    a = getMaximum(a, b, c);
+    const double min = getMinimum(a, b, c);
+    const double max = getMaximum(a, b, c);
+    c = min;
+    a = max;
     b = summ - a - c;
     return 0;
 }
