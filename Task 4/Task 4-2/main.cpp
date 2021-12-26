@@ -167,12 +167,17 @@ string to_string(const int* array, const size_t size)
         throw invalid_argument("Массив не существует");
 
     stringstream buffer;
-    buffer << "{";
-    for (size_t index = 0; index < size - 1; index++)
-    {
-        buffer << array[index] << ", ";
+    if (size == 0) {
+        buffer << "{}";
     }
-    buffer << array[size - 1] << "}";
+    else {
+        buffer << "{";
+        for (size_t index = 0; index < size - 1; index++)
+        {
+            buffer << array[index] << ", ";
+        }
+        buffer << array[size - 1] << "}";
+    }
     return buffer.str();
 }
 
@@ -198,29 +203,18 @@ void delete_palindromes(int*& array, size_t& size) {
         int temp = abs(array[i]);
         if (temp % 10 == temp / 10) {
             delete_element(array, size, i);
+            i--;
         }
     }
 }
 
 void delete_element(int*& array, size_t& size, const size_t index) {
     int* newArray = new int[size - 1];
-    if (index == 0) {
-        for (size_t i = 1; i < size; i++) {
-            newArray[i - 1] = array[i];
-        }
+    for (size_t i = 0; i < index; i++) {
+        newArray[i] = array[i];
     }
-    else if (index == size - 1) {
-        for (size_t i = 0; i < (size - 1); i++) {
-            newArray[i] = array[i];
-        }
-    }
-    else {
-        for (size_t i = 0; i < index; i++) {
-            newArray[i] = array[i];
-        }
-        for (size_t i = index + 1; i < size; i++) {
-            newArray[i - 1] = array[i];
-        }
+    for (size_t i = index + 1; i < size; i++) {
+        newArray[i - 1] = array[i];
     }
     delete[] array;
     array = newArray;
