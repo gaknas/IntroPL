@@ -194,7 +194,7 @@ void replace_last_negative(int* array, const size_t size) {
 }
 
 void delete_palindromes(int*& array, size_t& size) {
-    for (size_t i = 0; i < size - 1; i++) {
+    for (size_t i = 0; i < size; i++) {
         int temp = abs(array[i]);
         if (temp % 10 == temp / 10) {
             delete_element(array, size, i);
