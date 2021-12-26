@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <sstream>
 #include <random>
 #include <iomanip>
@@ -6,73 +6,73 @@
 using namespace std;
 
 /**
- * \brief Перечислимый тип способов задания массива.
+ * \brief РџРµСЂРµС‡РёСЃР»РёРјС‹Р№ С‚РёРї СЃРїРѕСЃРѕР±РѕРІ Р·Р°РґР°РЅРёСЏ РјР°СЃСЃРёРІР°.
  */
 enum class InputType
 {
     /**
-     * \brief ввод вручную.
+     * \brief РІРІРѕРґ РІСЂСѓС‡РЅСѓСЋ.
      */
     MANUALLY,
 
     /**
-     * \brief создание с использованием генератора случайных чисел.
+     * \brief СЃРѕР·РґР°РЅРёРµ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РіРµРЅРµСЂР°С‚РѕСЂР° СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР».
      */
      RANDOMLY
 };
 
 /**
- * \brief Метод заполнения массива
- * \param cols Количество строк в массиве
- * \param rows Количество столбцов в массиве
- * \param input_type Способ создания массива
- * \param LOWER_BOUND Нижняя граница для случайных чисел
- * \param UPPER_BOUND Верхняя граница для случайных чисел
- * \return Заполненный массив
+ * \brief РњРµС‚РѕРґ Р·Р°РїРѕР»РЅРµРЅРёСЏ РјР°СЃСЃРёРІР°
+ * \param cols РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РІ РјР°СЃСЃРёРІРµ
+ * \param rows РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РІ РјР°СЃСЃРёРІРµ
+ * \param input_type РЎРїРѕСЃРѕР± СЃРѕР·РґР°РЅРёСЏ РјР°СЃСЃРёРІР°
+ * \param LOWER_BOUND РќРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° РґР»СЏ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
+ * \param UPPER_BOUND Р’РµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р° РґР»СЏ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
+ * \return Р—Р°РїРѕР»РЅРµРЅРЅС‹Р№ РјР°СЃСЃРёРІ
  */
 int** get_matrix(const size_t cols, const size_t rows, const int input_type, const int LOWER_BOUND, const int UPPER_BOUND);
 
 /**
- * \brief Функция для получения размера массива
- * \param message Мотивоционное сообщение для пользователя
- * \return Размер массива
+ * \brief Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР°
+ * \param message РњРѕС‚РёРІРѕС†РёРѕРЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+ * \return Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°
  */
 size_t get_size(const std::string& message);
 
 /**
- * \brief Вывод в строку элементов массива
- * \param cols количество строк в массиве
- * \param rows количество столбцов в массиве
- * \return Строка с элементами
+ * \brief Р’С‹РІРѕРґ РІ СЃС‚СЂРѕРєСѓ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°
+ * \param cols РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РІ РјР°СЃСЃРёРІРµ
+ * \param rows РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РІ РјР°СЃСЃРёРІРµ
+ * \return РЎС‚СЂРѕРєР° СЃ СЌР»РµРјРµРЅС‚Р°РјРё
  */
 string to_string(int**, const size_t cols, const size_t rows);
 
 /**
- * \brief Заменяет элементы кратные 3 на 0
- * \param cols количество строк в массиве
- * \param rows количество столбцов в массиве
+ * \brief Р—Р°РјРµРЅСЏРµС‚ СЌР»РµРјРµРЅС‚С‹ РєСЂР°С‚РЅС‹Рµ 3 РЅР° 0
+ * \param cols РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РІ РјР°СЃСЃРёРІРµ
+ * \param rows РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РІ РјР°СЃСЃРёРІРµ
  */
 void replace_multiple_three(int**, const size_t cols, const size_t rows);
 
 /**
- * \brief Удаляет строки в которых второй элемент больше предпоследнего
- * \param cols количество строк в массиве
- * \param rows количество столбцов в массиве
+ * \brief РЈРґР°Р»СЏРµС‚ СЃС‚СЂРѕРєРё РІ РєРѕС‚РѕСЂС‹С… РІС‚РѕСЂРѕР№ СЌР»РµРјРµРЅС‚ Р±РѕР»СЊС€Рµ РїСЂРµРґРїРѕСЃР»РµРґРЅРµРіРѕ
+ * \param cols РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РІ РјР°СЃСЃРёРІРµ
+ * \param rows РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РІ РјР°СЃСЃРёРІРµ
  */
 void delete_cols(int**&, size_t& cols, size_t rows);
 
 /**
- * \brief Удаляет строку под номером (\a index)
- * \param cols количество строк в массиве
- * \param rows количество столбцов в массиве
- * \param index номер строки которую надо удалить
+ * \brief РЈРґР°Р»СЏРµС‚ СЃС‚СЂРѕРєСѓ РїРѕРґ РЅРѕРјРµСЂРѕРј (\a index)
+ * \param cols РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РІ РјР°СЃСЃРёРІРµ
+ * \param rows РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РІ РјР°СЃСЃРёРІРµ
+ * \param index РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё РєРѕС‚РѕСЂСѓСЋ РЅР°РґРѕ СѓРґР°Р»РёС‚СЊ
  */
 void delete_col(int**&, size_t& cols, size_t rows, const size_t index);
 
 
 /**
- * \brief Точка входа в программу
- * \return 0 в случае успеха
+ * \brief РўРѕС‡РєР° РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ
+ * \return 0 РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°
  */
 int main()
 {
@@ -85,19 +85,19 @@ int main()
     size_t rows = 0;
     try
     {
-        cols = get_size("Введите количество строк массива = ");
-        rows = get_size("Введите количество столбцов массива = ");
-        cout << "Выберите способ создания массива: " << static_cast<int>(InputType::MANUALLY) << " - вручную, " << static_cast<int>(InputType::RANDOMLY) << " - заполнить случайными числами ";
+        cols = get_size("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РјР°СЃСЃРёРІР° = ");
+        rows = get_size("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РјР°СЃСЃРёРІР° = ");
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ СЃРїРѕСЃРѕР± СЃРѕР·РґР°РЅРёСЏ РјР°СЃСЃРёРІР°: " << static_cast<int>(InputType::MANUALLY) << " - РІСЂСѓС‡РЅСѓСЋ, " << static_cast<int>(InputType::RANDOMLY) << " - Р·Р°РїРѕР»РЅРёС‚СЊ СЃР»СѓС‡Р°Р№РЅС‹РјРё С‡РёСЃР»Р°РјРё ";
         int input_type;
         cin >> input_type;
         my_matrix = get_matrix(cols, rows, input_type, LOWER_BOUND, UPPER_BOUND);
-        cout << "Полученный массив:\n";
+        cout << "РџРѕР»СѓС‡РµРЅРЅС‹Р№ РјР°СЃСЃРёРІ:\n";
         cout << to_string(my_matrix, cols, rows);
         replace_multiple_three(my_matrix, cols, rows);
-        cout << "Массив после замены всех элементов кратных 3 на 0:\n";
+        cout << "РњР°СЃСЃРёРІ РїРѕСЃР»Рµ Р·Р°РјРµРЅС‹ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ РєСЂР°С‚РЅС‹С… 3 РЅР° 0:\n";
         cout << to_string(my_matrix, cols, rows);
         delete_cols(my_matrix, cols, rows);
-        cout << "Массив после удаления всех строк в которых второй элемент больше предпоследнего:\n";
+        cout << "РњР°СЃСЃРёРІ РїРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ РІСЃРµС… СЃС‚СЂРѕРє РІ РєРѕС‚РѕСЂС‹С… РІС‚РѕСЂРѕР№ СЌР»РµРјРµРЅС‚ Р±РѕР»СЊС€Рµ РїСЂРµРґРїРѕСЃР»РµРґРЅРµРіРѕ:\n";
         cout << to_string(my_matrix, cols, rows);
     }
     catch (exception& e)
@@ -133,7 +133,7 @@ size_t get_size(const std::string& message)
 int** get_matrix(const size_t cols, const size_t rows, const int input_type, const int LOWER_BOUND, const int UPPER_BOUND)
 {
     if (cols == 0 || rows == 0)
-        throw out_of_range("Неправильный размер массива");
+        throw out_of_range("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°");
 
     int** matrix = new int*[cols];
     //Will be used to obtain a seed for the random number engine
@@ -150,7 +150,7 @@ int** get_matrix(const size_t cols, const size_t rows, const int input_type, con
             {
             case static_cast<int>(InputType::MANUALLY):
             {
-                cout << "Введите matrix[" << col << "][" << row <<"] = ";
+                cout << "Р’РІРµРґРёС‚Рµ matrix[" << col << "][" << row <<"] = ";
                 cin >> matrix[col][row];
                 break;
             }
@@ -160,7 +160,7 @@ int** get_matrix(const size_t cols, const size_t rows, const int input_type, con
                 break;
             }
             default:
-                cout << "Ошибка!";
+                cout << "РћС€РёР±РєР°!";
             }
         }
     }
@@ -171,7 +171,7 @@ int** get_matrix(const size_t cols, const size_t rows, const int input_type, con
 string to_string(int** matrix, const size_t cols, const size_t rows)
 {
     if (matrix == nullptr)
-        throw invalid_argument("Массив не существует");
+        throw invalid_argument("РњР°СЃСЃРёРІ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
     stringstream buffer;
     for (size_t col = 0; col < cols; col++) {
