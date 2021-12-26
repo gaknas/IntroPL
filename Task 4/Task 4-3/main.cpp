@@ -204,7 +204,7 @@ void replace_multiple_three(int** matrix, const size_t cols, const size_t rows) 
 }
 
 void delete_cols(int**& matrix, size_t& cols, size_t rows) {
-    for (size_t col = 0; col < cols - 1; col++) {
+    for (size_t col = 0; col < cols; col++) {
         if (matrix[col][1] > matrix[col][rows - 2])
             delete_col(matrix, cols, rows, col);
     }
@@ -212,34 +212,16 @@ void delete_cols(int**& matrix, size_t& cols, size_t rows) {
 
 void delete_col(int **&matrix, size_t& cols, size_t rows, const size_t index) {
     int** newMatrix = new int*[cols - 1];
-    if (index == 0) {
-        for (size_t col = 1; col < cols; col++) {
-            newMatrix[col - 1] = new int[rows];
-            for (size_t row = 0; row < rows; row++) {
-                newMatrix[col - 1][row] = matrix[col][row];
-            }
+    for (size_t col = 0; col < index; col++) {
+        newMatrix[col] = new int[rows];
+        for (size_t row = 0; row < rows; row++) {
+            newMatrix[col][row] = matrix[col][row];
         }
     }
-    else if (index == cols - 1) {
-        for (size_t col = 0; col < (cols - 1); col++) {
-            newMatrix[col] = new int[rows];
-            for (size_t row = 0; row < rows; row++) {
-                newMatrix[col][row] = matrix[col][row];
-            }
-        }
-    }
-    else {
-        for (size_t col = 0; col < index; col++) {
-            newMatrix[col] = new int[rows];
-            for (size_t row = 0; row < rows; row++) {
-                newMatrix[col][row] = matrix[col][row];
-            }
-        }
-        for (size_t col = index + 1; col < cols; col++) {
-            newMatrix[col - 1] = new int[rows];
-            for (size_t row = 0; row < rows; row++) {
-                newMatrix[col - 1][row] = matrix[col][row];
-            }
+    for (size_t col = index + 1; col < cols; col++) {
+        newMatrix[col - 1] = new int[rows];
+        for (size_t row = 0; row < rows; row++) {
+            newMatrix[col - 1][row] = matrix[col][row];
         }
     }
     for (size_t col = 0; col < cols; col++) {
