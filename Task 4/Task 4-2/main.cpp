@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <sstream>
 #include <random>
 
@@ -54,14 +54,14 @@ void replace_last_negative(int*, const size_t size);
  * \brief Удаляет из массива все числа в котором первая и последняя цифры одинаковые
  * \param size Размер массива
  */
-void delete_palindromes(int*&, size_t &size);
+void delete_palindromes(int*&, size_t& size);
 
 /**
  * \brief Удаляет из массива элемент под номером (\a index)
  * \param size Размер массива
  * \param index номер элемента который надо удалить
  */
-void delete_element(int*&, size_t &size, const size_t index);
+void delete_element(int*&, size_t& size, const size_t index);
 
 /**
  * \brief Создает из исходного массива новый массив P по определенному правилу
@@ -193,7 +193,7 @@ void replace_last_negative(int* array, const size_t size) {
     }
 }
 
-void delete_palindromes(int *&array, size_t &size) {
+void delete_palindromes(int*& array, size_t& size) {
     for (size_t i = 0; i < size - 1; i++) {
         int temp = abs(array[i]);
         if (temp % 10 == temp / 10) {
@@ -202,7 +202,7 @@ void delete_palindromes(int *&array, size_t &size) {
     }
 }
 
-void delete_element(int *&array, size_t &size, const size_t index) {
+void delete_element(int*& array, size_t& size, const size_t index) {
     int* newArray = new int[size - 1];
     if (index == 0) {
         for (size_t i = 1; i < size; i++) {
