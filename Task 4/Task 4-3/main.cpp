@@ -204,9 +204,15 @@ void replace_multiple_three(int** matrix, const size_t cols, const size_t rows) 
 }
 
 void delete_cols(int**& matrix, size_t& cols, size_t rows) {
-    for (size_t col = 0; col < cols; col++) {
-        if (matrix[col][1] > matrix[col][rows - 2])
-            delete_col(matrix, cols, rows, col);
+    if (rows <= 1)
+        throw out_of_range("В массиве слишком мало рядов");
+    else {
+        for (size_t col = 0; col < cols; col++) {
+            if (matrix[col][1] > matrix[col][rows - 2]) {
+                delete_col(matrix, cols, rows, col);
+                col--;
+            }
+        }
     }
 }
 
