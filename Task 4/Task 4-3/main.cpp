@@ -55,19 +55,21 @@ string to_string(int**, const size_t cols, const size_t rows);
 void replace_multiple_three(int**, const size_t cols, const size_t rows);
 
 /**
- * \brief Удаляет строки в которых второй элемент больше предпоследнего
+ * \brief Возвращает массив в котором удалоены все строки в которых второй элемент больше предпоследнего
  * \param cols количество строк в массиве
  * \param rows количество столбцов в массиве
+ * \param new_cols Количество строк для нового массива
+ * \return Массив в котором удалоены все строки в которых второй элемент больше предпоследнего
  */
-void delete_cols(int**&, size_t& cols, size_t rows);
+int** delete_cols(int**, size_t cols, size_t rows, size_t new_cols);
 
 /**
- * \brief Удаляет строку под номером (\a index)
+ * \brief Возвращает размер для массива в котором нет строк в которых второй элемент больше предпоследнего
  * \param cols количество строк в массиве
  * \param rows количество столбцов в массиве
- * \param index номер строки которую надо удалить
+ * \return Размер для массива в котором нет строк в которых второй элемент больше предпоследнего
  */
-void delete_col(int**&, size_t& cols, size_t rows, const size_t index);
+size_t get_new_size(int**, size_t cols, size_t rows);
 
 
 /**
@@ -96,9 +98,13 @@ int main()
         replace_multiple_three(my_matrix, cols, rows);
         cout << "Массив после замены всех элементов кратных 3 на 0:\n";
         cout << to_string(my_matrix, cols, rows);
-        delete_cols(my_matrix, cols, rows);
+        size_t new_cols = get_new_size(my_matrix, cols, rows);
+        int** new_matrix = delete_cols(my_matrix, cols, rows, new_cols);
         cout << "Массив после удаления всех строк в которых второй элемент больше предпоследнего:\n";
-        cout << to_string(my_matrix, cols, rows);
+        cout << to_string(new_matrix, new_cols, rows);
+        for (size_t col = 0; col < new_cols; col++) {
+            delete[] new_matrix[col];
+        }
     }
     catch (exception& e)
     {
@@ -141,7 +147,7 @@ int** get_matrix(const size_t cols, const size_t rows, const int input_type, con
 
     //Standard mersenne_twister_engine seeded with rd()
     std::mt19937 gen(rd());
-    const std::uniform_int_distribution<> uniformIntDistribution(LOWER_BOUND, UPPER_BOUND);
+    const std::uniform_int_distribution<> uniform_int_distribution(LOWER_BOUND, UPPER_BOUND);
     for (size_t col = 0; col < cols; col++)
     {
         matrix[col] = new int[rows];
@@ -156,7 +162,7 @@ int** get_matrix(const size_t cols, const size_t rows, const int input_type, con
             }
             case static_cast<int>(InputType::RANDOMLY):
             {
-                matrix[col][row] = uniformIntDistribution(gen);
+                matrix[col][row] = uniform_int_distribution(gen);
                 break;
             }
             default:
@@ -203,36 +209,33 @@ void replace_multiple_three(int** matrix, const size_t cols, const size_t rows) 
     }
 }
 
-void delete_cols(int**& matrix, size_t& cols, size_t rows) {
+int** delete_cols(int** matrix, size_t cols, size_t rows, size_t new_cols) {
     if (rows <= 1)
         throw out_of_range("В массиве слишком мало рядов");
     else {
+        int** new_matrix = new int* [new_cols];
+        size_t counter = 0;
         for (size_t col = 0; col < cols; col++) {
             if (matrix[col][1] > matrix[col][rows - 2]) {
-                delete_col(matrix, cols, rows, col);
-                col--;
+                counter++;
+            }
+            else {
+                new_matrix[col - counter] = new int[rows];
+                for (size_t row = 0; row < rows; row++) {
+                    new_matrix[col - counter][row] = matrix[col][row];
+                }
             }
         }
+        return new_matrix;
     }
 }
 
-void delete_col(int **&matrix, size_t& cols, size_t rows, const size_t index) {
-    int** newMatrix = new int*[cols - 1];
-    for (size_t col = 0; col < index; col++) {
-        newMatrix[col] = new int[rows];
-        for (size_t row = 0; row < rows; row++) {
-            newMatrix[col][row] = matrix[col][row];
-        }
-    }
-    for (size_t col = index + 1; col < cols; col++) {
-        newMatrix[col - 1] = new int[rows];
-        for (size_t row = 0; row < rows; row++) {
-            newMatrix[col - 1][row] = matrix[col][row];
-        }
-    }
+size_t get_new_size(int **matrix, size_t cols, size_t rows) {
+    size_t counter = 0;
     for (size_t col = 0; col < cols; col++) {
-        delete[] matrix[col];
+        if (matrix[col][1] > matrix[col][rows - 2]) {
+            counter++;
+        }
     }
-    matrix = newMatrix;
-    cols = cols - 1;
+    return cols - counter;
 }
