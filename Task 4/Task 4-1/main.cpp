@@ -76,8 +76,8 @@ int main()
     setlocale(LC_ALL, "Russian");
     auto error_code = 0;
     int* my_array = nullptr;
-    const int LOWER_BOUND = -11;
-    const int UPPER_BOUND = 21;
+    const int LOWER_BOUND = -10;
+    const int UPPER_BOUND = 20;
     try
     {
         const auto size = get_size("Введите размер массива = ");
