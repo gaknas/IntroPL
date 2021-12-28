@@ -53,6 +53,7 @@ void replace_last_negative(int*, const size_t size);
 /**
  * \brief Возвращает массив, в котором удалены все числа в котором первая и последняя цифры одинаковые
  * \param size Размер массива
+ * \param newsize Размер нового массива
  * \return Массив, в котором удалены все числа в котором первая и последняя цифры одинаковые
  */
 int* delete_palindromes(int*, size_t size, size_t newsize);
