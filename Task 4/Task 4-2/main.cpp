@@ -51,17 +51,18 @@ string to_string(const int*, const size_t size);
 void replace_last_negative(int*, const size_t size);
 
 /**
- * \brief Удаляет из массива все числа в котором первая и последняя цифры одинаковые
+ * \brief Возвращает массив, в котором удалены все числа в котором первая и последняя цифры одинаковые
  * \param size Размер массива
+ * \return Массив, в котором удалены все числа в котором первая и последняя цифры одинаковые
  */
-void delete_palindromes(int*&, size_t& size);
+int* delete_palindromes(int*, size_t size, size_t newsize);
 
 /**
- * \brief Удаляет из массива элемент под номером (\a index)
+ * \brief Считает количество чисел с одинаковой первой и последней цифрой (\a index)
  * \param size Размер массива
- * \param index номер элемента который надо удалить
+ * \return Количество чисел с одинаковой первой и последней цифрой
  */
-void delete_element(int*&, size_t& size, const size_t index);
+size_t get_palindromes_count(int*, size_t size);
 
 /**
  * \brief Создает из исходного массива новый массив P по определенному правилу
@@ -92,11 +93,16 @@ int main()
         cout << "Полученный массив:\n";
         cout << to_string(my_array, size);
         replace_last_negative(my_array, size);
-        delete_palindromes(my_array, size);
+        size_t palindromes_count = get_palindromes_count(my_array, size);
+        size_t new_size = size - palindromes_count;
+        int* new_array = delete_palindromes(my_array, size, new_size);
         cout << "\nМассив после удаления всех элементов с одинаковой начальной и конечной цифрой:\n";
-        cout << to_string(my_array, size);
+        cout << to_string(new_array, new_size);
+        int* massive_m = сreate_m(my_array, size);
         cout << "\nМассив M:\n";
-        cout << to_string(сreate_m(my_array, size), size);
+        cout << to_string(massive_m, size);
+        delete[] new_array;
+        delete[] massive_m;
     }
     catch (exception& e)
     {
@@ -118,7 +124,7 @@ size_t get_size(const std::string& message)
     std::cout << message;
     std::cin >> size;
 
-    if (size < 0)
+    if (size <= 0)
     {
         throw std::out_of_range("Incorrect size. Value has to be greater or equal zero.");
     }
@@ -128,8 +134,6 @@ size_t get_size(const std::string& message)
 
 int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, const int UPPER_BOUND)
 {
-    if (size == 0)
-        throw out_of_range("Неправильный размер массива");
 
     const auto array = new int[size];
     //Will be used to obtain a seed for the random number engine
@@ -137,7 +141,7 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
 
     //Standard mersenne_twister_engine seeded with rd()
     std::mt19937 gen(rd());
-    const std::uniform_int_distribution<> uniformIntDistribution(LOWER_BOUND, UPPER_BOUND);
+    const std::uniform_int_distribution<> uniform_int_distribution(LOWER_BOUND, UPPER_BOUND);
     for (size_t index = 0; index < size; index++)
     {
         switch (input_type)
@@ -150,7 +154,7 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
         }
         case static_cast<int>(InputType::RANDOMLY):
         {
-            array[index] = uniformIntDistribution(gen);
+            array[index] = uniform_int_distribution(gen);
             break;
         }
         default:
@@ -198,38 +202,41 @@ void replace_last_negative(int* array, const size_t size) {
     }
 }
 
-void delete_palindromes(int*& array, size_t& size) {
+int* delete_palindromes(int* array, size_t size, size_t new_size) {
+    int* new_array = new int[new_size];
+    size_t index = 0;
+    for (size_t i = 0; i < size; i++) {
+        int temp = abs(array[i]);
+        if (temp % 10 != temp / 10 || array[i] == 0) {
+            new_array[i - index] = array[i];
+        }
+        else {
+            index++;
+        }
+    }
+    return new_array;
+}
+
+size_t get_palindromes_count(int* array, size_t size) {
+    size_t palindromes_counter = 0;
     for (size_t i = 0; i < size; i++) {
         int temp = abs(array[i]);
         if (temp % 10 == temp / 10) {
-            delete_element(array, size, i);
-            i--;
+            palindromes_counter++;
         }
     }
-}
-
-void delete_element(int*& array, size_t& size, const size_t index) {
-    int* newArray = new int[size - 1];
-    for (size_t i = 0; i < index; i++) {
-        newArray[i] = array[i];
-    }
-    for (size_t i = index + 1; i < size; i++) {
-        newArray[i - 1] = array[i];
-    }
-    delete[] array;
-    array = newArray;
-    size = size - 1;
+    return palindromes_counter;
 }
 
 int* сreate_m(int* P, const size_t size) {
-    int* M = new int[size];
+    int* massive_m = new int[size];
     for (size_t i = 0; i < size; i++) {
         if (P[i] % 2 == 0) {
-            M[i] = P[i] * i;
+            massive_m[i] = P[i] * i;
         }
         else {
-            M[i] = -P[i];
+            massive_m[i] = -P[i];
         }
     }
-    return M;
+    return massive_m;
 }
