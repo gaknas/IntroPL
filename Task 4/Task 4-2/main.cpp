@@ -228,7 +228,7 @@ size_t get_palindromes_count(int* array, size_t size) {
     size_t palindromes_counter = 0;
     for (size_t i = 0; i < size; i++) {
         int temp = abs(array[i]);
-        if (temp % 10 == temp / 10) {
+        if (temp % 10 == temp / 10 && array[i] != 0) {
             palindromes_counter++;
         }
     }
