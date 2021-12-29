@@ -7,7 +7,7 @@ using namespace std;
 /**
  * \brief Перечислимый тип способов задания массива.
  */
-enum class InputType
+enum class input_types
 {
     /**
      * \brief ввод вручную.
@@ -87,7 +87,7 @@ int main()
     try
     {
         auto size = get_size("Введите размер массива = ");
-        cout << "Выберите способ создания массива: " << static_cast<int>(InputType::MANUALLY) << " - вручную, " << static_cast<int>(InputType::RANDOMLY) << " - заполнить случайными числами ";
+        cout << "Выберите способ создания массива: " << static_cast<int>(input_types::MANUALLY) << " - вручную, " << static_cast<int>(input_types::RANDOMLY) << " - заполнить случайными числами ";
         int input_type;
         cin >> input_type;
         my_array = get_array(size, input_type, LOWER_BOUND, UPPER_BOUND);
@@ -102,8 +102,14 @@ int main()
         int* massive_m = сreate_m(my_array, size);
         cout << "\nМассив M:\n";
         cout << to_string(massive_m, size);
-        delete[] new_array;
-        delete[] massive_m;
+        if (new_array != nullptr) {
+            delete[] new_array;
+            new_array = nullptr;
+        }
+        if (massive_m != nullptr) {
+            delete massive_m;
+            massive_m = nullptr;
+        }
     }
     catch (exception& e)
     {
@@ -147,13 +153,13 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
     {
         switch (input_type)
         {
-        case static_cast<int>(InputType::MANUALLY):
+        case static_cast<int>(input_types::MANUALLY):
         {
             cout << "Введите " << index + 1 << " элемент массива = ";
             cin >> array[index];
             break;
         }
-        case static_cast<int>(InputType::RANDOMLY):
+        case static_cast<int>(input_types::RANDOMLY):
         {
             array[index] = uniform_int_distribution(gen);
             break;
