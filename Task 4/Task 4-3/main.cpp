@@ -8,7 +8,7 @@ using namespace std;
 /**
  * \brief Перечислимый тип способов задания массива.
  */
-enum class InputType
+enum class input_types
 {
     /**
      * \brief ввод вручную.
@@ -89,7 +89,7 @@ int main()
     {
         cols = get_size("Введите количество строк массива = ");
         rows = get_size("Введите количество столбцов массива = ");
-        cout << "Выберите способ создания массива: " << static_cast<int>(InputType::MANUALLY) << " - вручную, " << static_cast<int>(InputType::RANDOMLY) << " - заполнить случайными числами ";
+        cout << "Выберите способ создания массива: " << static_cast<int>(input_types::MANUALLY) << " - вручную, " << static_cast<int>(input_types::RANDOMLY) << " - заполнить случайными числами ";
         int input_type;
         cin >> input_type;
         my_matrix = get_matrix(cols, rows, input_type, LOWER_BOUND, UPPER_BOUND);
@@ -102,8 +102,12 @@ int main()
         int** new_matrix = delete_cols(my_matrix, cols, rows, new_cols);
         cout << "Массив после удаления всех строк в которых второй элемент больше предпоследнего:\n";
         cout << to_string(new_matrix, new_cols, rows);
-        for (size_t col = 0; col < new_cols; col++) {
-            delete[] new_matrix[col];
+        if (new_matrix != nullptr) {
+            for (size_t col = 0; col < new_cols; col++) {
+                delete[] new_matrix[col];
+            }
+            delete[] new_matrix;
+            new_matrix = nullptr;
         }
     }
     catch (exception& e)
@@ -117,6 +121,7 @@ int main()
         for (size_t col = 0; col < cols; col++) {
             delete[] my_matrix[col];
         }
+        delete[] my_matrix;
         my_matrix = nullptr;
     }
     return error_code;
@@ -154,13 +159,13 @@ int** get_matrix(const size_t cols, const size_t rows, const int input_type, con
         for (size_t row = 0; row < rows; row++) {
             switch (input_type)
             {
-            case static_cast<int>(InputType::MANUALLY):
+            case static_cast<int>(input_types::MANUALLY):
             {
                 cout << "Введите matrix[" << col << "][" << row <<"] = ";
                 cin >> matrix[col][row];
                 break;
             }
-            case static_cast<int>(InputType::RANDOMLY):
+            case static_cast<int>(input_types::RANDOMLY):
             {
                 matrix[col][row] = uniform_int_distribution(gen);
                 break;
