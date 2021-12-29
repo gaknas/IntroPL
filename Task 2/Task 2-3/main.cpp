@@ -14,7 +14,7 @@ int read_number(const std::string& message);
  * \param c третье число.
  * \return 0 в случае успеха.
  */
-int ascendingSortThree(double &a, double &b, double &c);
+int ascendingSort(double &a, double &b, double &c);
 
 /**
  * \brief Функция сортировки по возрастанию двух чисел.
@@ -22,7 +22,7 @@ int ascendingSortThree(double &a, double &b, double &c);
  * \param b второе число.
  * \return 0 в случае успеха.
  */
-int ascendingSortTwo(double &a, double &b);
+int ascendingSort(double &a, double &b);
 
 /**
  * \brief Функция нахождения минимального из трех чисел.
@@ -64,14 +64,14 @@ int main()
         double cosine = cos(NUMBER);
         std::cout << "Косинус числа равен " << cosine << "\n";
         if (isCalculated(NUMBER)) {
-            const double logarithm = log(NUMBER);
+            double logarithm = log(NUMBER);
             std::cout << "Логарифм числа равен " << logarithm << "\n";
-            ascendingSortThree(sine, cosine, logarithm);
+            ascendingSort(sine, cosine, logarithm);
             std::cout << sine << " " << cosine << " " << logarithm << std::endl;
         }
         else {
             std::cout << "Логарифм не вычисляется" << "\n";
-            ascendingSortTwo(sine, cosine);
+            ascendingSort(sine, cosine);
             std::cout << sine << " " << cosine << std::endl;
         }
         return 0;
@@ -96,17 +96,19 @@ double getMaximum(double a, double b, double c)
     return a;
 }
 
-int ascendingSortThree(double &a, double &b, double &c)
+int ascendingSort(double &a, double &b, double &c)
 {
     
     const double summ = a + b + c;
-    a = getMinimum(a, b, c);
-    c = getMaximum(a, b, c);
+    const double min = getMinimum(a, b, c);
+    const double max = getMaximum(a, b, c);
+    a = min;
+    c = max;
     b = summ - a - c;
     return 0;
 }
 
-int ascendingSortTwo(double &a, double &b)
+int ascendingSort(double &a, double &b)
 {
     if (a > b) {
         double auxiliary = a;
