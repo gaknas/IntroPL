@@ -7,7 +7,7 @@ using namespace std;
 /**
  * \brief Перечислимый тип способов задания массива.
  */
-enum class InputType
+enum class input_types
 {
     /**
      * \brief ввод вручную.
@@ -76,12 +76,12 @@ int main()
     setlocale(LC_ALL, "Russian");
     auto error_code = 0;
     int* my_array = nullptr;
-    const int LOWER_BOUND = -11;
-    const int UPPER_BOUND = 21;
+    const int LOWER_BOUND = -10;
+    const int UPPER_BOUND = 20;
     try
     {
         const auto size = get_size("Введите размер массива = ");
-        cout << "Выберите способ создания массива: " << static_cast<int>(InputType::MANUALLY) << " - вручную, " << static_cast<int>(InputType::RANDOMLY) << " - заполнить случайными числами ";
+        cout << "Выберите способ создания массива: " << static_cast<int>(input_types::MANUALLY) << " - вручную, " << static_cast<int>(input_types::RANDOMLY) << " - заполнить случайными числами ";
         int input_type;
         cin >> input_type;
         my_array = get_array(size, input_type, LOWER_BOUND, UPPER_BOUND);
@@ -140,13 +140,13 @@ int* get_array(const size_t size, const int input_type, const int LOWER_BOUND, c
     {
         switch (input_type)
         {
-        case static_cast<int>(InputType::MANUALLY):
+        case static_cast<int>(input_types::MANUALLY):
         {
             cout << "Введите " << index + 1 << " элемент массива = ";
             cin >> array[index];
             break;
         }
-        case static_cast<int>(InputType::RANDOMLY):
+        case static_cast<int>(input_types::RANDOMLY):
         {
             array[index] = uniformIntDistribution(gen);
             break;
